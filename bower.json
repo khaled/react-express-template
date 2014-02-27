@@ -1,0 +1,29 @@
+{
+  "name": "node-template",
+  "version": "0.0.0",
+  "authors": [
+    "Khaled Agrama"
+  ],
+  "description": "starter template for node apps",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.13",
+    "angular-route": "~1.2.13",
+    "angular-resource": "~1.2.13",
+    "angular-sanitize": "~1.2.13",
+    "angular-cookies": "~1.2.13",
+    "bootstrap": "~3.1.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.13",
+    "angular-scenario": "~1.2.13"
+  }
+}

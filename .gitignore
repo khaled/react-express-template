@@ -1,0 +1,5 @@
+app/client/components
+node_modules
+public
+.tmp
+todo

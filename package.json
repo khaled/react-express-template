@@ -1,0 +1,29 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "express": "^3.4.8",
+    "jade": "*",
+    "less-middleware": "*",
+    "coffee-middleware": "^0.2.1",
+    "coffee-script": "^1.7.1",
+    "socket.io": "^0.9.16"
+  },
+  "devDependencies": {
+    "gulp-util": "^2.2.14",
+    "gulp": "^3.5.2",
+    "gulp-coffee": "^1.4.1",
+    "gulp-livereload": "^1.1.1",
+    "gulp-browserify": "^0.4.6",
+    "coffeeify": "^0.6.0",
+    "debowerify": "^0.6.0",
+    "gulp-rename": "^1.1.0",
+    "gulp-less": "^1.2.1",
+    "gulp-nodemon": "^1.0.0",
+    "gulp-plumber": "^0.5.6"
+  }
+}
