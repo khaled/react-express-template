@@ -44,7 +44,10 @@ gulp.task 'js', ->
   .pipe(gulp.dest('./public/javascripts'))
   .pipe(livereload())
 
+gulp.task 'views', -> gulp.src('').pipe(livereload())
+
 gulp.task 'watch', ->
   gulp.watch ['./app/client/scripts/**'], ['js']
   gulp.watch ['./app/client/stylesheets/**'], ['css']
   gulp.watch ['./app/client/components/**'], ['css', 'js']
+  gulp.watch ['./app/views/**'], ['views']
