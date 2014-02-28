@@ -11,16 +11,7 @@ plumber = require 'gulp-plumber'
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
 
-gulp.task 'default', [ 'js', 'css', 'watch'], ->
-  nodemon
-    script: 'app/server/server.coffee'
-    watch: [
-      'app/server/'
-    ]
-    execMap:
-      coffee: './node_modules/coffee-script/bin/coffee'
-
-gulp.task 'css', ->
+css = ->
   gulp.src('./app/client/stylesheets/styles.less')
   .pipe(plumber())
   .pipe(less(
@@ -28,9 +19,8 @@ gulp.task 'css', ->
   ))
   .on('error', err)
   .pipe(gulp.dest('./public/stylesheets'))
-  .pipe(livereload())
 
-gulp.task 'js', ->
+js = ->
   gulp.src('./app/client/scripts/client.coffee')
   .pipe(plumber())
   .pipe(coffee())
@@ -42,12 +32,30 @@ gulp.task 'js', ->
   .on('error', err)
   .pipe(rename('client.js'))
   .pipe(gulp.dest('./public/javascripts'))
-  .pipe(livereload())
 
-gulp.task 'views', -> gulp.src('').pipe(livereload())
+gulp.task 'default', [ 'jsr', 'cssr', 'watch'], ->
+  nodemon
+    script: 'app/server/server.coffee'
+    watch: [
+      'app/server/'
+    ]
+    execMap:
+      coffee: './node_modules/coffee-script/bin/coffee'
+
+gulp.task 'build', ['js', 'css']
+
+gulp.task 'css', -> css()
+
+gulp.task 'js', -> js()
+
+gulp.task 'cssr', -> css().pipe(livereload())
+
+gulp.task 'jsr', -> js().pipe(livereload())
+
+gulp.task 'viewsr', -> gulp.src('').pipe(livereload())
 
 gulp.task 'watch', ->
-  gulp.watch ['./app/client/scripts/**'], ['js']
-  gulp.watch ['./app/client/stylesheets/**'], ['css']
-  gulp.watch ['./app/client/components/**'], ['css', 'js']
-  gulp.watch ['./app/views/**'], ['views']
+  gulp.watch ['./app/client/scripts/**'], ['jsr']
+  gulp.watch ['./app/client/stylesheets/**'], ['cssr']
+  gulp.watch ['./app/client/components/**'], ['cssr', 'jsr']
+  gulp.watch ['./app/views/**'], ['viewsr']
