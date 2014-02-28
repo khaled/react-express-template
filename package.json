@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "prepublish": "./node_modules/.bin/gulp build"
+    "prepublish": "$(npm bin)/bower install && $(npm bin)/gulp build"
   },
   "dependencies": {
     "express": "^3.4.8",
@@ -11,11 +11,11 @@
     "less-middleware": "*",
     "coffee-middleware": "^0.2.1",
     "coffee-script": "^1.7.1",
-    "socket.io": "^0.9.16"
-  },
-  "devDependencies": {
-    "gulp-util": "^2.2.14",
+    "socket.io": "^0.9.16",
+    "bower": "^1.2.8",
+
     "gulp": "^3.5.2",
+    "gulp-util": "^2.2.14",
     "gulp-coffee": "^1.4.1",
     "gulp-livereload": "^1.1.1",
     "gulp-browserify": "^0.4.6",
@@ -25,5 +25,6 @@
     "gulp-less": "^1.2.1",
     "gulp-nodemon": "^1.0.0",
     "gulp-plumber": "^0.5.6"
-  }
+  },
+  "devDependencies": {}
 }
