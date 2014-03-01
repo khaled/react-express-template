@@ -20,7 +20,7 @@
     "gulp-livereload": "^1.1.1",
     "gulp-browserify": "^0.4.6",
     "coffeeify": "^0.6.0",
-    "debowerify": "^0.6.0",
+    "debowerify": "khaled/debowerify",
     "gulp-rename": "^1.1.0",
     "gulp-less": "^1.2.1",
     "gulp-nodemon": "^1.0.0",
