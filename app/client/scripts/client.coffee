@@ -1,1 +1,2 @@
-require 'angular'
+_ = require('lodash')
+require('bootstrap')
