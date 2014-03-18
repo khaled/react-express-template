@@ -19,7 +19,6 @@ app.use express.methodOverride()
 app.use express.cookieParser("34ycn278gybvjnxszewufnv40ty9yghvhzpkdoqwjeimox")
 app.use express.session()
 app.use app.router
-console.log(path.join(__dirname, "../../public"))
 app.use require("less-middleware")(src: path.join(root, "public"))
 app.use express.static(path.join(root, "public"))
 
