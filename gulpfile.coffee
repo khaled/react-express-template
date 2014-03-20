@@ -57,5 +57,4 @@ gulp.task 'viewsr', -> gulp.src('').pipe(livereload())
 gulp.task 'watch', ->
   gulp.watch ['./app/client/scripts/**'], ['jsr']
   gulp.watch ['./app/client/stylesheets/**'], ['cssr']
-  gulp.watch ['./app/client/components/**'], ['cssr', 'jsr']
   gulp.watch ['./app/views/**'], ['viewsr']
