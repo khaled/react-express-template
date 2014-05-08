@@ -11,7 +11,12 @@ plumber = require 'gulp-plumber'
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
 
+semantic = "./app/client/components/semantic/build/packaged"
 css = ->
+  gulp.src("#{semantic}/fonts/**/*")
+  .pipe(gulp.dest('./public/fonts'))
+  gulp.src("#{semantic}/images/")
+  .pipe(gulp.dest('.public/images'))
   gulp.src('./app/client/stylesheets/styles.less')
   .pipe(plumber())
   .pipe(less(
