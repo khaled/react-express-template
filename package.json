@@ -26,7 +26,6 @@
     "gulp-util": "^2.2.20",
     "gulp-webpack": "^0.3.0",
     "less": "^1.7.4",
-    "less-loader": "^0.7.7",
     "lodash": "^2.4.1",
     "morgan": "^1.2.3",
     "react": "^0.11.1",
