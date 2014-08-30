@@ -9,7 +9,7 @@ Web app starter template using React, CoffeeScript, Node.js and more.
 2. Run ```npm install```
 3. Start the dev server by running ```$(npm bin)/gulp```
 4. Visit http://localhost:3000
-5. Start coding
+5. Get to work!
 
 ### Languages / Frameworks / Libraries ###
 
