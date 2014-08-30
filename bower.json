@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.1",
-    "semantic": "~0.16.1",
+    "semantic": "~0.19.0",
     "normalize-css": "~3.0.1"
   },
   "devDependencies": {}
