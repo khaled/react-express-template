@@ -13,8 +13,8 @@ Header = React.createClass
       </div>
     </div>
 
-  Body = React.createClass
-    render: ->
-      <Header/>
+Body = React.createClass
+  render: ->
+    <Header/>
 
 $ -> React.renderComponent(<Body/>, document.body)
