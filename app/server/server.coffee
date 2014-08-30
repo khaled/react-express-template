@@ -29,12 +29,6 @@ app.configure 'development', ->
 app.get "/", routes.index
 
 server = http.createServer(app)
-io = require("socket.io").listen(server)
-
-io.sockets.on "connection", (socket) ->
-  socket.emit "news", foo: "bar"
-  socket.on "cool-thing", (data) ->
-    console.log(data)
 
 server.listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
