@@ -6,7 +6,7 @@ Header = React.createClass
   render: ->
     <div className="ui fluid transparent fixed menu" style={opacity: 0.9}>
       <div className="title item">
-        <b>node-template</b>
+        <b>APP NAME</b>
       </div>
       <div className="right floated connection status item">
         <i className="green bolt icon"/>
