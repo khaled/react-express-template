@@ -1,1 +1,1 @@
-web: $(npm bin)/coffee ./app/server/server.coffee
+web: $(npm bin)/coffee ./src/server.coffee
