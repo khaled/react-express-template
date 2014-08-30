@@ -17,11 +17,11 @@ dist_path = "#{root}/dist"
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
 
-webpack = (name, ext, failhard) ->
+webpack = (name, ext, watch) ->
   options =
 #    bail: true
-#    cache: true
-#    watch: true
+    watch: watch
+    cache: true
     devtool: "source-map"
     output:
       filename: "#{name}.js"
@@ -57,9 +57,11 @@ webpack = (name, ext, failhard) ->
   .pipe(gulp.dest(dist_path))
 
 
-gulp.task 'js', -> webpack("client", "cjsx", true)
+js = (watch) -> webpack("client", "cjsx", watch)
 
-gulp.task 'js-dev', ['js']
+gulp.task 'js', -> js(false)
+
+gulp.task 'js-dev', -> js(true)
 
 gulp.task 'css', ->
   gulp.src("#{src_path}/styles.less")
@@ -69,7 +71,7 @@ gulp.task 'css', ->
   ))
   .on('error', err)
   .pipe(autoprefixer("last 2 versions", "ie 8", "ie 9"))
-  .pipe(gulp.dest("#{dist_path}"))
+  .pipe(gulp.dest(dist_path))
 
 gulp.task 'clean', (callback) ->
   rimraf.sync(dist_path)
@@ -83,24 +85,21 @@ gulp.task 'copy', ->
 
 gulp.task 'build', ['clean', 'copy', 'css', 'js']
 
-gulp.task 'build-dev', ['clean', 'copy', 'css', 'js-dev']
-
-gulp.task 'server', -> require('./app/js/server.coffee')
-
 server_main = "#{src_path}/server.coffee"
-
-gulp.task 'dev', ['build-dev', 'watch'], ->
+gulp.task 'server', ->
   nodemon
     script: server_main
     watch: [server_main]
     env:
       PORT: process.env.PORT or 3000
 
+gulp.task 'dev', ['copy', 'css', 'watch', 'server', 'js-dev']
+
 gulp.task 'default', ['dev']
 
 gulp.task 'watch', ->
   livereload.listen()
-  gulp.watch(["#{dist_path}/**"]).on('change', livereload.changed)
-  gulp.watch ["#{src_path}/**/*.coffee", "#{src_path}/**/*.cjsx", "#{src_path}/**/*.js"], ['js-dev']
+  gulp.watch("#{dist_path}/**").on('change', livereload.changed)
+  # gulp.watch ["#{src_path}/**/*.coffee", "#{src_path}/**/*.cjsx", "#{src_path}/**/*.js"], ['js-dev']
   gulp.watch ["#{src_path}/**/*.less"], ['css']
   gulp.watch ["#{src_path}/**/*.html"], ['copy']
