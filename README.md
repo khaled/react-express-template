@@ -1,4 +1,4 @@
-node-template
+react-coffee-node-template
 =============
 
 Starter template for node apps
