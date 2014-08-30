@@ -1,65 +1,106 @@
-
 gulp = require 'gulp'
 gutil = require 'gulp-util'
-rename = require 'gulp-rename'
-coffee = require 'gulp-coffee'
-less = require 'gulp-less'
-browserify = require 'gulp-browserify'
 livereload = require 'gulp-livereload'
 nodemon = require 'gulp-nodemon'
 plumber = require 'gulp-plumber'
+gwebpack = require 'gulp-webpack'
+less = require 'gulp-less'
+autoprefixer = require 'gulp-autoprefixer'
+rimraf = require 'rimraf'
+
+root = __dirname
+src_path = "#{root}/src"
+components_path = "#{root}/bower_components"
+modules_path = "#{root}/node_modules"
+semantic_path = "#{components_path}/semantic/build/packaged"
+dist_path = "#{root}/dist"
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
 
-semantic = "./app/client/components/semantic/build/packaged"
-css = ->
-  gulp.src("#{semantic}/fonts/**/*")
-  .pipe(gulp.dest('./public/fonts'))
-  gulp.src("#{semantic}/images/")
-  .pipe(gulp.dest('.public/images'))
-  gulp.src('./app/client/stylesheets/styles.less')
+webpack = (name, ext, failhard) ->
+  options =
+#    bail: true
+#    cache: true
+#    watch: true
+    devtool: "source-map"
+    output:
+      filename: "#{name}.js"
+      sourceMapFilename: "[file].map"
+    resolve:
+      extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx", ".coffee", ".cjsx"]
+      modulesDirectories: [components_path, modules_path]
+    module:
+      loaders: [
+        {
+          test: /\.coffee$/
+          loader: "coffee-loader"
+        }
+        {
+          test: /\.cjsx$/
+          loader: "transform?coffee-reactify"
+        }
+        {
+          test: /\.jsx$/
+          loader: "transform?reactify"
+        }
+      ]
+    externals: [(context, request, ecb) ->
+      # externs = [/^foo.*/]
+      externs = []
+      match = externs.some (x) -> x.test request
+      if match then ecb(null, "amd " + request) else ecb()
+      return
+    ]
+
+  gulp.src("#{src_path}/#{name}.#{ext}")
+  .pipe(gwebpack(options))
+  .pipe(gulp.dest(dist_path))
+
+
+gulp.task 'js', -> webpack("client", "cjsx", true)
+
+gulp.task 'js-dev', ['js']
+
+gulp.task 'css', ->
+  gulp.src("#{src_path}/styles.less")
   .pipe(plumber())
   .pipe(less(
-    paths: ['./app/client/components']
+    paths: [components_path, modules_path]
   ))
   .on('error', err)
-  .pipe(gulp.dest('./public/stylesheets'))
+  .pipe(autoprefixer("last 2 versions", "ie 8", "ie 9"))
+  .pipe(gulp.dest("#{dist_path}"))
 
-js = ->
-  gulp.src('./app/client/scripts/client.coffee')
-  .pipe(plumber())
-  .pipe(coffee())
-  .on('error', err)
-  .pipe(browserify(
-    transform: ['coffeeify', 'debowerify']
-    extensions: ['.coffee']
-  ))
-  .on('error', err)
-  .pipe(rename('client.js'))
-  .pipe(gulp.dest('./public/javascripts'))
+gulp.task 'clean', (callback) ->
+  rimraf.sync(dist_path)
+  callback()
 
-gulp.task 'default', [ 'jsr', 'cssr', 'watch'], ->
+gulp.task 'copy', ->
+  gulp.src("#{src_path}/*.html").pipe(gulp.dest(dist_path))
+  gulp.src("#{src_path}/favicon.ico").pipe(gulp.dest(dist_path))
+  gulp.src("#{semantic_path}/fonts/**/*").pipe(gulp.dest("#{dist_path}/fonts"))
+  gulp.src("#{semantic_path}/images/**/*").pipe(gulp.dest("#{dist_path}/images"))
+
+gulp.task 'build', ['clean', 'copy', 'css', 'js']
+
+gulp.task 'build-dev', ['clean', 'copy', 'css', 'js-dev']
+
+gulp.task 'server', -> require('./app/js/server.coffee')
+
+server_main = "#{src_path}/server.coffee"
+
+gulp.task 'dev', ['build-dev', 'watch'], ->
   nodemon
-    script: 'app/server/server.coffee'
-    watch: [
-      'app/server/'
-    ]
-    execMap:
-      coffee: './node_modules/coffee-script/bin/coffee'
+    script: server_main
+    watch: [server_main]
+    env:
+      PORT: process.env.PORT or 3000
 
-gulp.task 'build', ['js', 'css']
-
-gulp.task 'css', -> css()
-
-gulp.task 'js', -> js()
-
-gulp.task 'cssr', -> css().pipe(livereload())
-
-gulp.task 'jsr', -> js().pipe(livereload())
-
-gulp.task 'viewsr', -> gulp.src('').pipe(livereload())
+gulp.task 'default', ['dev']
 
 gulp.task 'watch', ->
-  gulp.watch ['./app/client/scripts/**'], ['jsr']
-  gulp.watch ['./app/client/stylesheets/**'], ['cssr']
-  gulp.watch ['./app/views/**'], ['viewsr']
+  livereload.listen()
+  gulp.watch(["#{dist_path}/**"]).on('change', livereload.changed)
+  gulp.watch ["#{src_path}/**/*.coffee", "#{src_path}/**/*.cjsx", "#{src_path}/**/*.js"], ['js-dev']
+  gulp.watch ["#{src_path}/**/*.less"], ['css']
+  gulp.watch ["#{src_path}/**/*.html"], ['copy']

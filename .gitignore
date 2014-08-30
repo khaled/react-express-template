@@ -1,5 +1,5 @@
-app/client/components
+bower_components
 node_modules
-public
+dist
 .tmp
 todo
