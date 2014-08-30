@@ -1,4 +1,3 @@
-_ = require('lodash')
 window.$ = window.jQuery = require('jquery/dist/jquery')
 require('semantic/build/packaged/javascript/semantic')
 React = require('react/addons')
