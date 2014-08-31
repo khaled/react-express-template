@@ -1,7 +1,7 @@
-react-coffee-node-template
-==========================
+react-coffee-express-template
+=============================
 
-Web app starter template using React, CoffeeScript, Node.js and more.
+Web app starter template with React, CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
 
 ### Getting Started ###
 
@@ -21,7 +21,7 @@ Web app starter template using React, CoffeeScript, Node.js and more.
 * Autoprefixer for automatic vendor prefixing
 * JQuery because semantic wants it (use React for most client side view rendering / manipulation)
 * Webpack for client side CommonJS modules and script concatenation
-* Node.js for server side logic
+* Express for server side logic
 * Gulp for building and change monitoring
 * LiveReload
 
