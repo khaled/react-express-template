@@ -13,7 +13,7 @@ src_path = "#{root}/src"
 components_path = "#{root}/bower_components"
 modules_path = "#{root}/node_modules"
 semantic_path = "#{components_path}/semantic/build/packaged"
-dist_path = "#{root}/dist"
+dist_path = "dist"
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
 
@@ -73,9 +73,8 @@ gulp.task 'css', ->
   .pipe(autoprefixer("last 2 versions", "ie 8", "ie 9"))
   .pipe(gulp.dest(dist_path))
 
-gulp.task 'clean', (callback) ->
+gulp.task 'clean', ->
   rimraf.sync(dist_path)
-  callback()
 
 gulp.task 'copy', ->
   gulp.src("#{src_path}/*.html").pipe(gulp.dest(dist_path))
@@ -93,13 +92,10 @@ gulp.task 'server', ->
     env:
       PORT: process.env.PORT or 3000
 
-gulp.task 'dev', ['copy', 'css', 'watch', 'server', 'js-dev']
+gulp.task 'default', ['clean', 'copy', 'css', 'server', 'js-dev', 'watch']
 
-gulp.task 'default', ['dev']
-
-gulp.task 'watch', ->
+gulp.task 'watch', ['copy'], ->
   livereload.listen()
-  gulp.watch("#{dist_path}/**").on('change', livereload.changed)
-  # gulp.watch ["#{src_path}/**/*.coffee", "#{src_path}/**/*.cjsx", "#{src_path}/**/*.js"], ['js-dev']
+  gulp.watch(["#{dist_path}/**/*"]).on('change', livereload.changed)
   gulp.watch ["#{src_path}/**/*.less"], ['css']
   gulp.watch ["#{src_path}/**/*.html"], ['copy']
