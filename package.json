@@ -6,10 +6,10 @@
     "prepublish": "$(npm bin)/bower install && $(npm bin)/gulp build"
   },
   "dependencies": {
-    "body-parser": "^1.6.7",
+    "body-parser": "^1.7.0",
     "bower": "^1.3.9",
     "coffee-loader": "^0.7.2",
-    "coffee-reactify": "^0.5.0",
+    "coffee-reactify": "^0.5.1",
     "coffee-script": "^1.8.0",
     "cookie-parser": "^1.3.2",
     "debug": "^1.0.4",
@@ -25,7 +25,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-util": "^2.2.20",
     "gulp-webpack": "^0.3.0",
-    "morgan": "^1.2.3",
+    "morgan": "^1.3.0",
     "react": "^0.11.1",
     "react-router": "^0.7.0",
     "reactify": "^0.14.0",
