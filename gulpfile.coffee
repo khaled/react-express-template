@@ -8,10 +8,9 @@ less = require 'gulp-less'
 autoprefixer = require 'gulp-autoprefixer'
 rimraf = require 'rimraf'
 
-root = __dirname
-src_path = "#{root}/src"
-components_path = "#{root}/bower_components"
-modules_path = "#{root}/node_modules"
+src_path = "src"
+components_path = "bower_components"
+modules_path = "node_modules"
 semantic_path = "#{components_path}/semantic/build/packaged"
 dist_path = "dist"
 
@@ -22,7 +21,7 @@ webpack = (name, ext, watch) ->
 #    bail: true
     watch: watch
     cache: true
-    devtool: "source-map"
+    # devtool: "source-map"
     output:
       filename: "#{name}.js"
       sourceMapFilename: "[file].map"
@@ -44,12 +43,10 @@ webpack = (name, ext, watch) ->
           loader: "transform?reactify"
         }
       ]
-    externals: [(context, request, ecb) ->
-      # externs = [/^foo.*/]
-      externs = []
-      match = externs.some (x) -> x.test request
-      if match then ecb(null, "amd " + request) else ecb()
-      return
+    externals: [
+      {
+        vertx: true
+      }
     ]
 
   gulp.src("#{src_path}/#{name}.#{ext}")
@@ -58,7 +55,6 @@ webpack = (name, ext, watch) ->
 
 
 js = (watch) -> webpack("client", "cjsx", watch)
-
 gulp.task 'js', -> js(false)
 
 gulp.task 'js-dev', -> js(true)

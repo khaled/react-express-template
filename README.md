@@ -15,6 +15,7 @@ Web app starter template with React, CoffeeScript, Express/Node.js, Semantic-UI,
 
 * Facebook's React for client side view and controller logic
 * CoffeeScript with React sugar (.cjsx)
+* React-router for client side routing
 * Normalize-CSS for normalization of default element styles across browsers
 * Semantic-UI CSS framework
 * LESS for extended styling capabilities
