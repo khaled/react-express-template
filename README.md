@@ -28,7 +28,7 @@ Web app starter template with React, React Router, CoffeeScript, Express/Node.js
 
 ### Development Notes ###
 
-* Client side scripts are concatenated using Webpack.  The main entry point is client.cjsx.
+* Client side scripts are concatenated using Webpack.  The main entry point is client.cjsx.  From here you can require() other .cjsx, .coffee, .jsx, or .js files.
 * The main stylesheet entry point is styles.less.
 * The server entry point is server.coffee.
 
