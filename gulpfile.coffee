@@ -21,7 +21,7 @@ webpack = (name, ext, watch) ->
 #    bail: true
     watch: watch
     cache: true
-    # devtool: "source-map"
+    devtool: "source-map"
     output:
       filename: "#{name}.js"
       sourceMapFilename: "[file].map"
