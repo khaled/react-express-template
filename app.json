@@ -1,0 +1,6 @@
+{
+  "name": "react-coffee-express-template",
+  "description": "Web app starter template with React, React Router, CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.",
+  "keywords": ["node", "express", "react", "coffeescript", "semantic-ui", "template", "boilerplate"],
+  "logo": "https://facebook.github.io/react/img/logo.svg"
+}
