@@ -3,6 +3,8 @@ react-coffee-express-template
 
 Web app starter template with React, React Router, CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/khaled/react-coffee-express-template)
+
 ### Getting Started ###
 
 1. Fork and/or clone
