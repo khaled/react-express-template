@@ -5,13 +5,14 @@ nodemon = require 'gulp-nodemon'
 plumber = require 'gulp-plumber'
 gwebpack = require 'gulp-webpack'
 less = require 'gulp-less'
-autoprefixer = require 'gulp-autoprefixer'
+postcss = require 'gulp-postcss'
+autoprefixer = require 'autoprefixer-core'
 rimraf = require 'rimraf'
 
 src_path = "src"
 components_path = "bower_components"
 modules_path = "node_modules"
-semantic_path = "#{components_path}/semantic/build/packaged"
+semantic_path = "#{modules_path}/semantic-ui/dist"
 dist_path = "dist"
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
@@ -66,7 +67,7 @@ gulp.task 'css', ->
     paths: [components_path, modules_path]
   ))
   .on('error', err)
-  .pipe(autoprefixer("last 2 versions", "ie 8", "ie 9"))
+  .pipe(postcss([autoprefixer(browsers: ["last 2 versions", "ie 8", "ie 9"])]))
   .pipe(gulp.dest(dist_path))
 
 gulp.task 'clean', ->
