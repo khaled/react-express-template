@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "prepublish": "$(npm bin)/bower install && $(npm bin)/gulp build"
+    "prepublish": "gulp build"
   },
   "dependencies": {
     "autoprefixer-core": "^5.1.5",
