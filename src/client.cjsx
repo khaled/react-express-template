@@ -1,5 +1,5 @@
 window.$ = window.jQuery = require('jquery')
-require('semantic-ui/dist/semantic')
+require('semantic-ui-css/semantic')
 React = require('react/addons')
 Router = require('react-router')
 {Routes, Route, DefaultRoute, Link} = Router

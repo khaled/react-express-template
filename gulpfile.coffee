@@ -12,7 +12,7 @@ rimraf = require 'rimraf'
 src_path = "src"
 components_path = "bower_components"
 modules_path = "node_modules"
-semantic_path = "#{modules_path}/semantic-ui/dist"
+semantic_path = "#{modules_path}/semantic-ui-css"
 dist_path = "dist"
 
 err = (x...) -> gutil.log(x...); gutil.beep(x...)
