@@ -8,6 +8,7 @@ logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
 debug = require("debug")("upgrade-contacts")
+require("babel/register")
 
 dist = path.join(__dirname, '/../dist')
 app = express()

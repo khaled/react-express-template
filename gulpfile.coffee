@@ -36,12 +36,13 @@ webpack = (name, ext, watch) ->
           loader: "coffee-loader"
         }
         {
-          test: /\.cjsx$/
-          loader: "transform?coffee-reactify"
+          test: [/\.js$/, /\.jsx$/]
+          exclude: [new RegExp(modules_path), new RegExp(components_path)]
+          loader: "babel-loader"
         }
         {
-          test: /\.jsx$/
-          loader: "transform?reactify"
+          test: /\.cjsx$/
+          loader: "transform?coffee-reactify"
         }
       ]
 
