@@ -1,7 +1,7 @@
 react-coffee-express-template
 =============================
 
-Web app starter template with React, React Router, CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
+Web app starter template with React, React Router, ES6 (via Babel), CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/khaled/react-coffee-express-template)
 
@@ -16,8 +16,9 @@ Web app starter template with React, React Router, CoffeeScript, Express/Node.js
 ### Languages / Frameworks / Libraries ###
 
 * Facebook's React for client side view and controller logic
-* CoffeeScript with React sugar (.cjsx)
 * React Router for client side routing
+* ES6 (via Babel)
+* CoffeeScript with React sugar (.cjsx)
 * Normalize-CSS for normalization of default element styles across browsers
 * Semantic-UI CSS framework
 * LESS for extended styling capabilities
@@ -36,4 +37,4 @@ Web app starter template with React, React Router, CoffeeScript, Express/Node.js
 
 ### LiveReload ###
 
-Install a live reload plugin for your browser to instantly see your changes in the browser when a client side file (cjsx/coffee/js/less/css/html) changes.
+Install a live reload plugin for your browser (e.g. [RemoteLiveReload for Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei)) to instantly see your changes in the browser when a client side file (cjsx/coffee/jsx/js/less/css/html) changes.
