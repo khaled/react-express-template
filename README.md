@@ -1,4 +1,4 @@
-react-coffee-express-template
+react-express-template
 =============================
 
 Web app starter template with React, React Router, ES6 (via Babel), CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
