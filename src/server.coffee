@@ -43,17 +43,13 @@ app.use (req, res, next) ->
 if app.get("env") is "development"
   app.use (err, req, res, next) ->
     res.status err.status or 500
-    res.render "error",
-      message: err.message
-      error: err
+    res.send(message: err.message, status: err.status, stack: err.stack)
 
 # production error handler
 # no stacktraces leaked to user
 app.use (err, req, res, next) ->
   res.status err.status or 500
-  res.render "error",
-    message: err.message
-    error: {}
+  res.send(message: err.message)
 
 #
 # HTTPS support
