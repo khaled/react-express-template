@@ -7,7 +7,7 @@ path = require("path")
 logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
-debug = require("debug")("upgrade-contacts")
+debug = require("debug")("react-express-template")
 require("babel/register")
 
 dist = path.join(__dirname, '/../dist')
