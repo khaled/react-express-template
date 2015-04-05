@@ -8,6 +8,7 @@ less = require 'gulp-less'
 postcss = require 'gulp-postcss'
 autoprefixer = require 'autoprefixer-core'
 rimraf = require 'rimraf'
+GLOBAL.Promise = (require 'es6-promise').Promise # to make gulp-postcss happy
 
 src_path = "src"
 components_path = "bower_components"
