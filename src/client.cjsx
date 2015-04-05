@@ -4,12 +4,12 @@ React = require('react/addons')
 Router = require('react-router')
 Header = require('./header')
 
-{Routes, Route, DefaultRoute, Link} = Router
+{Route, RouteHandler, DefaultRoute, Link} = Router
 
 Home = React.createClass
   render: ->
     <div className="column">
-      <div className="ui segment">
+      <div classNakme="ui segment">
         <h1 className="ui header">
           <span>Get to work!</span>
           <div className="sub header">
@@ -32,16 +32,16 @@ Main = React.createClass
     <div>
       <Header/>
       <div className="ui page grid">
-        <@props.activeRouteHandler/>
+        <RouteHandler {...@props}/>
       </div>
     </div>
 
 routes =
-  <Routes location="hash">
-    <Route path="/" handler={Main}>
-      <DefaultRoute name="home" handler={Home}/>
-      <Route name="about" handler={About}/>
-    </Route>
-  </Routes>
+  <Route path="/" handler={Main}>
+    <DefaultRoute name="home" handler={Home}/>
+    <Route name="about" handler={About}/>
+  </Route>
 
-$ -> React.renderComponent(routes, document.body)
+$ ->
+  Router.run routes, Router.HashLocation, (Handler) ->
+    React.render(<Handler/>, document.body)
