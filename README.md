@@ -32,6 +32,7 @@ Web app starter template with React, React Router, ES6 (via Babel), CoffeeScript
 ### Development Notes ###
 
 * Client side scripts are concatenated using Webpack.  The main entry point is client.cjsx.  From here you can require() other .cjsx, .coffee, .jsx, or .js files.
+* ES6 is supported in JS and JSX files; these are transpiled to ES5 via Babel.  There's an example of this in ```src/header.jsx```.
 * The main stylesheet entry point is styles.less.
 * The server entry point is server.coffee.
 
