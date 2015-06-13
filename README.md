@@ -39,3 +39,6 @@ Web app starter template with React, React Router, ES6 (via Babel), CoffeeScript
 ### LiveReload ###
 
 Install a live reload plugin for your browser (e.g. [RemoteLiveReload for Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei)) to instantly see your changes in the browser when a client side file (cjsx/coffee/jsx/js/less/css/html) changes.
+
+###License###
+MIT
