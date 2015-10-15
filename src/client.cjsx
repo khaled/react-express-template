@@ -1,10 +1,10 @@
 window.$ = window.jQuery = require('jquery')
 require('semantic-ui-css/semantic')
 React = require('react/addons')
-Router = require('react-router')
+reactRouter = require('react-router')
 Header = require('./header')
 
-{Route, RouteHandler, DefaultRoute, Link} = Router
+{Router, Route, IndexRoute} = reactRouter
 
 Home = React.createClass
   render: ->
@@ -32,16 +32,15 @@ Main = React.createClass
     <div>
       <Header/>
       <div className="ui page grid">
-        <RouteHandler {...@props}/>
+        { @props.children }
       </div>
     </div>
 
 routes =
-  <Route path="/" handler={Main}>
-    <DefaultRoute name="home" handler={Home}/>
-    <Route name="about" handler={About}/>
+  <Route path="/" component={Main}>
+    <IndexRoute component={Home}/>
+    <Route path="about" component={About}/>
   </Route>
 
 $ ->
-  Router.run routes, Router.HashLocation, (Handler) ->
-    React.render(<Handler/>, document.body)
+  React.render(<Router>{routes}</Router>, document.body)

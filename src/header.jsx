@@ -1,7 +1,5 @@
 import React from "react/addons"
-import Router from "react-router"
-
-let {Link} = Router
+import { Link } from "react-router"
 
 export default React.createClass({
   render: function() {
@@ -11,10 +9,10 @@ export default React.createClass({
           <div className="title item">
             <b>Application Name</b>
           </div>
-          <Link className="item" to="home">
+          <Link className="item" to="/">
             Home
           </Link>
-          <Link className="item" to="about">
+          <Link className="item" to="/about">
             About
           </Link>
           <div className="right floated item">
