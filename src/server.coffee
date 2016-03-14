@@ -10,7 +10,7 @@ bodyParser = require("body-parser")
 debug = require("debug")("react-express-template")
 require("babel/register")
 
-dist = path.join(__dirname, '/../dist')
+dist = path.join(__dirname, '..', 'dist')
 app = express()
 # enable if you have a favicon
 # app.use favicon("#{dist}/favicon.ico")

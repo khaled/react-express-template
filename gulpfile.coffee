@@ -8,6 +8,7 @@ less = require 'gulp-less'
 postcss = require 'gulp-postcss'
 autoprefixer = require 'autoprefixer-core'
 rimraf = require 'rimraf'
+path = require("path")
 GLOBAL.Promise = (require 'es6-promise').Promise # to make gulp-postcss happy
 
 src_path = "src"
@@ -83,7 +84,7 @@ gulp.task 'server', ->
     script: server_main
     watch: [server_main]
     execMap:
-      coffee: "#{modules_path}/.bin/coffee"
+      coffee: path.join(__dirname, modules_path, '.bin', 'coffee')
     env:
       PORT: process.env.PORT or 3000
 
