@@ -1,7 +1,7 @@
 react-express-template
 =============================
 
-Web app starter template with React 0.14, React Router, ES6 (via Babel), CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
+Web app starter template with React 15, React Router, ES6 (via Babel), CoffeeScript, Express/Node.js, Semantic-UI, Gulp and more.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/khaled/react-express-template)
 
